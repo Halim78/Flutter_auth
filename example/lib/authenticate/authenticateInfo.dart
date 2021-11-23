@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_microsoft_authentication_example/models/authentication_info.dart';
 import 'package:flutter_microsoft_authentication_example/profile/profile.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -7,17 +8,18 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:flutter_microsoft_authentication/flutter_microsoft_authentication.dart';
 
-class AUthenticateInfo extends StatefulWidget {
+class AuthenticateInfo extends StatefulWidget {
   @override
-  _AUthenticateInfoState createState() => _AUthenticateInfoState();
+  _AuthenticateInfoState createState() => _AuthenticateInfoState();
 }
 
-class _AUthenticateInfoState extends State<AUthenticateInfo> {
+class _AuthenticateInfoState extends State<AuthenticateInfo> {
   String _graphURI = "https://graph.microsoft.com/v1.0/me/";
 
   String _authToken = 'Unknown Auth Token';
   String _username = 'No Account';
   String _msProfile = 'Unknown Profile';
+  List<AuthenticationInfo> microsoftInfo = [];
 
   FlutterMicrosoftAuthentication fma;
 
@@ -85,6 +87,7 @@ class _AUthenticateInfoState extends State<AUthenticateInfo> {
 
     setState(() {
       _msProfile = json.decode(response.body).toString();
+      microsoftInfo.add(AuthenticationInfo.fromJson(jsonDecode(response.body)));
     });
   }
 
@@ -118,14 +121,13 @@ class _AUthenticateInfoState extends State<AUthenticateInfo> {
             RaisedButton(
               child: Text('Mon profile'),
               onPressed: () {
-                print('hhrhrhrhr');
                 Navigator.push(
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new Profile(value: {
-                            "profileInfo": _msProfile,
                             "tokenValue": _authToken,
-                            "userName": _username
+                            "userName": _username,
+                            "microsoftInfo": microsoftInfo[0]
                           })),
                 );
               },

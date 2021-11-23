@@ -9,23 +9,16 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String email = 'mike@valley.com';
-  String token = '';
-  String givenName = 'Mike';
-  String surname = 'Jasonor';
-  String displayName = 'Mike Jasonor';
   String userName = '';
-  String mobilePhone = '0612457899';
-  String businessPhone = '0798765433';
-  String jobTitle = 'Dev';
-  String favoriteLanguage = 'French';
-  String officeLocation = 'Paris';
-  String id = '77d04d77-bc4d-41dec-568df48cd5';
+  String token = '';
+
+  var res;
 
   @override
   void initState() {
     userName = widget.value['userName'];
     token = widget.value['tokenValue'];
+    res = widget.value['microsoftInfo'];
     super.initState();
   }
 
@@ -49,6 +42,10 @@ class _ProfileState extends State<Profile> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                Text(
+                  res.givenName,
+                  style: TextStyle(color: Colors.black),
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -83,7 +80,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Email : $email",
+                      "Email : ${res.email}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -97,7 +94,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Given Name : $givenName",
+                      "Given Name : ${res.givenName}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -111,7 +108,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Surname : $surname",
+                      "Surname : ${res.surname}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -125,7 +122,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "DisplayName : $displayName",
+                      "DisplayName : ${res.displayName}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -153,7 +150,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Mobile phone : $mobilePhone",
+                      "Mobile phone : ${res.mobilePhone}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -167,7 +164,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Business phone : $businessPhone",
+                      "Business phone :  ${res.businessPhone}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -181,7 +178,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Job title : $jobTitle",
+                      "Job title : ${res.jobTitle}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -195,7 +192,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Favorite language : $favoriteLanguage",
+                      "Favorite language : ${res.favoriteLanguage}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -209,7 +206,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "Office location : $officeLocation",
+                      "Office location : ${res.officeLocation}",
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -223,7 +220,7 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Text(
-                      "User id : $id",
+                      "User id : ${res.id}",
                       style: TextStyle(
                         fontSize: 15,
                       ),

@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Microsoft Authentication'),
         ),
-        body: AUthenticateInfo(),
+        body: AuthenticateInfo(),
       ),
     );
   }
