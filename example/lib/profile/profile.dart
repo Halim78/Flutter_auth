@@ -50,16 +50,6 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Text(
-        //     "Mon Profile",
-        //     style: TextStyle(color: Colors.black),
-        //   ),
-        //   backgroundColor: Colors.white,
-        //   iconTheme: IconThemeData(
-        //     color: Colors.black, //change your color here
-        //   ),
-        // ),
         body: SingleChildScrollView(
       child: Container(
         width: double.infinity,
@@ -95,8 +85,7 @@ class _ProfileState extends State<Profile> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
-                            image: NetworkImage(
-                                "https://images.unsplash.com/photo-1579202673506-ca3ce28943ef"),
+                            image: AssetImage('assets/images/profile.jpg'),
                             fit: BoxFit.cover)),
                   )),
             ),
@@ -195,21 +184,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             SizedBox(
-              height: 20,
-            ),
-            // Align(
-            //   alignment: Alignment.centerLeft,
-            //   child: Container(
-            //     child: Text(
-            //       "Business phone :  ${res.businessPhone}",
-            //       style: TextStyle(
-            //         fontSize: 15,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            SizedBox(
-              height: 20,
+              height: 40,
             ),
             Align(
               alignment: Alignment.centerLeft,

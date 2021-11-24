@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_microsoft_authentication_example/models/authentication_info.dart';
 import 'package:flutter_microsoft_authentication_example/profile/profile.dart';
@@ -45,8 +47,7 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     }
     setState(() {
       _authToken = authToken;
-      print("AUTH TOKEN $_authToken");
-      this._fetchMicrosoftProfile();
+      this._fetchMicrosoftProfile(_authToken);
     });
   }
 
@@ -76,7 +77,7 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     });
   }
 
-  Future<String> _loadAccount() async {
+  Future _loadAccount() async {
     String username = await this.fma.loadAccount;
     setState(() {
       _username = username;
@@ -92,13 +93,19 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     });
   }
 
-  _fetchMicrosoftProfile() async {
-    var response = await http.get(this._graphURI,
-        headers: {"Authorization": "Bearer " + this._authToken});
+  _fetchMicrosoftProfile(userToken) async {
+    print('000 $userToken');
+    var response = await http
+        .get(this._graphURI, headers: {"Authorization": "Bearer " + userToken});
+
+    // var microsoftValue = AuthenticationInfo.fromJson(jsonDecode(response.body));
+    // this._loadAccount(microsoftValue);
 
     setState(() {
       _msProfile = json.decode(response.body).toString();
-      microsoftInfo.add(AuthenticationInfo.fromJson(jsonDecode(response.body)));
+      microsoftInfo.insert(
+          0, AuthenticationInfo.fromJson(jsonDecode(response.body)));
+      inspect(microsoftInfo[0]);
       this._loadAccount();
     });
   }
@@ -113,23 +120,6 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.end,
-            //   children: <Widget>[
-            //     IconButton(
-            //       onPressed: _signOut,
-            //       icon: Icon(
-            //         Icons.logout_outlined,
-            //         color: Colors.red,
-            //         size: 30.0,
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            // ElevatedButton(
-            //   onPressed: _acquireTokenInteractively,
-            //   child: Text('Acquire Token'),
-            // ),
             SizedBox(
               height: 150,
             ),
@@ -220,45 +210,6 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
                 ),
               ),
             ),
-            // ElevatedButton(
-            //     onPressed: _acquireTokenSilently,
-            //     child: Text('Acquire Token Silently')),
-            // ElevatedButton(onPressed: _signOut, child: Text('Sign Out')),
-            // ElevatedButton(
-            //     onPressed: _fetchMicrosoftProfile,
-            //     child: Text('Fetch Profile')),
-            // if (Platform.isAndroid == true)
-            //   ElevatedButton(
-            //       onPressed: _loadAccount, child: Text('Load account')),
-            // SizedBox(
-            //   height: 8,
-            // ),
-            // ElevatedButton(
-            //   child: Text('Mon profile'),
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       new MaterialPageRoute(
-            //           builder: (context) => new Profile(value: {
-            //                 "tokenValue": _authToken,
-            //                 "userName": _username,
-            //                 "microsoftInfo": microsoftInfo[0]
-            //               })),
-            //     );
-            //   },
-            // ),
-            // SizedBox(
-            //   height: 8,
-            // ),
-            // if (Platform.isAndroid == true) Text("Username: $_username"),
-            // SizedBox(
-            //   height: 8,
-            // ),
-            // Text("Profile: $_msProfile"),
-            // SizedBox(
-            //   height: 8,
-            // ),
-            // Text("Token: $_authToken"),
           ],
         ),
       ),

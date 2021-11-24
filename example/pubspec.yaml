@@ -35,6 +35,7 @@ flutter:
 
   assets:
     - assets/android_auth_config.json
+    - assets/images/profile.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
