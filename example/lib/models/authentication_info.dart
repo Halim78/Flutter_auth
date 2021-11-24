@@ -4,7 +4,7 @@ class AuthenticationInfo {
   final String surname;
   final String displayName;
   final String mobilePhone;
-  final List businessPhone;
+  // final List businessPhone;
   final String jobTitle;
   final String favoriteLanguage;
   final String officeLocation;
@@ -18,7 +18,7 @@ class AuthenticationInfo {
       this.surname,
       this.displayName,
       this.mobilePhone,
-      this.businessPhone,
+      // this.businessPhone,
       this.jobTitle,
       this.favoriteLanguage,
       this.officeLocation,
@@ -31,7 +31,7 @@ class AuthenticationInfo {
       surname: json['surname'],
       displayName: json['displayName'],
       mobilePhone: json['mobilePhone'],
-      businessPhone: json['businessPhones'][0],
+      // businessPhone: json['businessPhones'][0],
       jobTitle: json['jobTitle'],
       favoriteLanguage: json['prefferedLanguage'],
       officeLocation: json['officeLocation'],

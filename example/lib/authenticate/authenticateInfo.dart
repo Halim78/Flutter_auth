@@ -45,6 +45,8 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     }
     setState(() {
       _authToken = authToken;
+      print("AUTH TOKEN $_authToken");
+      this._fetchMicrosoftProfile();
     });
   }
 
@@ -78,6 +80,15 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     String username = await this.fma.loadAccount;
     setState(() {
       _username = username;
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => new Profile(value: {
+                  "tokenValue": _authToken,
+                  "userName": _username,
+                  "microsoftInfo": microsoftInfo[0]
+                })),
+      );
     });
   }
 
@@ -88,6 +99,7 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     setState(() {
       _msProfile = json.decode(response.body).toString();
       microsoftInfo.add(AuthenticationInfo.fromJson(jsonDecode(response.body)));
+      this._loadAccount();
     });
   }
 
@@ -101,49 +113,152 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            RaisedButton(
-              onPressed: _acquireTokenInteractively,
-              child: Text('Acquire Token'),
-            ),
-            RaisedButton(
-                onPressed: _acquireTokenSilently,
-                child: Text('Acquire Token Silently')),
-            RaisedButton(onPressed: _signOut, child: Text('Sign Out')),
-            RaisedButton(
-                onPressed: _fetchMicrosoftProfile,
-                child: Text('Fetch Profile')),
-            if (Platform.isAndroid == true)
-              RaisedButton(
-                  onPressed: _loadAccount, child: Text('Load account')),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: <Widget>[
+            //     IconButton(
+            //       onPressed: _signOut,
+            //       icon: Icon(
+            //         Icons.logout_outlined,
+            //         color: Colors.red,
+            //         size: 30.0,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // ElevatedButton(
+            //   onPressed: _acquireTokenInteractively,
+            //   child: Text('Acquire Token'),
+            // ),
             SizedBox(
-              height: 8,
+              height: 150,
             ),
-            RaisedButton(
-              child: Text('Mon profile'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new Profile(value: {
-                            "tokenValue": _authToken,
-                            "userName": _username,
-                            "microsoftInfo": microsoftInfo[0]
-                          })),
-                );
-              },
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 10),
+              child: ElevatedButton(
+                onPressed: _acquireTokenInteractively,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          child: Image.network(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH6otc4wbEVZxC4lDW7FwXpU9vUMeTIVPAk9yXM0EJ91fvXVivR3L-HT6clmp1vCXRBLE&usqp=CAU',
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Container(
+                        child: Text("MICROSOFT"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            SizedBox(
-              height: 8,
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20),
+              child: ElevatedButton(
+                onPressed: null,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          child: Image.network(
+                            'https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_960_720.png',
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Container(
+                        child: Text("FACEBOOK"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            if (Platform.isAndroid == true) Text("Username: $_username"),
-            SizedBox(
-              height: 8,
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20),
+              child: ElevatedButton(
+                onPressed: null,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          child: Image.network(
+                            'https://media.lesechos.com/api/v1/images/view/5fb137038fe56f488d0987c6/1280x720/0604269767526-web-tete.jpg',
+                            height: 40,
+                            width: 70,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Container(
+                        child: Text("GOOGLE"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            Text("Profile: $_msProfile"),
-            SizedBox(
-              height: 8,
-            ),
-            Text("Token: $_authToken"),
+            // ElevatedButton(
+            //     onPressed: _acquireTokenSilently,
+            //     child: Text('Acquire Token Silently')),
+            // ElevatedButton(onPressed: _signOut, child: Text('Sign Out')),
+            // ElevatedButton(
+            //     onPressed: _fetchMicrosoftProfile,
+            //     child: Text('Fetch Profile')),
+            // if (Platform.isAndroid == true)
+            //   ElevatedButton(
+            //       onPressed: _loadAccount, child: Text('Load account')),
+            // SizedBox(
+            //   height: 8,
+            // ),
+            // ElevatedButton(
+            //   child: Text('Mon profile'),
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       new MaterialPageRoute(
+            //           builder: (context) => new Profile(value: {
+            //                 "tokenValue": _authToken,
+            //                 "userName": _username,
+            //                 "microsoftInfo": microsoftInfo[0]
+            //               })),
+            //     );
+            //   },
+            // ),
+            // SizedBox(
+            //   height: 8,
+            // ),
+            // if (Platform.isAndroid == true) Text("Username: $_username"),
+            // SizedBox(
+            //   height: 8,
+            // ),
+            // Text("Profile: $_msProfile"),
+            // SizedBox(
+            //   height: 8,
+            // ),
+            // Text("Token: $_authToken"),
           ],
         ),
       ),
