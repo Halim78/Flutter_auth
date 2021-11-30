@@ -98,9 +98,6 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
     var response = await http
         .get(this._graphURI, headers: {"Authorization": "Bearer " + userToken});
 
-    // var microsoftValue = AuthenticationInfo.fromJson(jsonDecode(response.body));
-    // this._loadAccount(microsoftValue);
-
     setState(() {
       _msProfile = json.decode(response.body).toString();
       microsoftInfo.insert(
