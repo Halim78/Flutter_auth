@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100131081670",
+    "project_id": "fir-27cb0",
+    "storage_bucket": "fir-27cb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100131081670:android:c7c4a9f8e6cb2b7945f6c7",
+        "android_client_info": {
+          "package_name": "za.co.britehouse.flutter_microsoft_authentication_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100131081670-9827ipdhicp10t56uel019ilgjdurli0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6B8O3N0SdO-3IzwMkxaSx5eXgxYQfJAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100131081670-9827ipdhicp10t56uel019ilgjdurli0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

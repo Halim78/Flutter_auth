@@ -1,14 +1,14 @@
 class AuthenticationInfo {
-  final String email;
-  final String givenName;
-  final String surname;
-  final String displayName;
-  final String mobilePhone;
+  final String? email;
+  final String? givenName;
+  final String? surname;
+  final String? displayName;
+  final String? mobilePhone;
   // final List businessPhone;
-  final String jobTitle;
-  final String favoriteLanguage;
-  final String officeLocation;
-  final String id;
+  final String? jobTitle;
+  final String? favoriteLanguage;
+  final String? officeLocation;
+  final String? id;
 
   // final List<LocationFact> facts;
 

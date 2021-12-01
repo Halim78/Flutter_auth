@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 class Profile extends StatefulWidget {
   final value;
-  Profile({Key key, this.value}) : super(key: key);
+  Profile({Key? key, this.value}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -15,7 +15,7 @@ class _ProfileState extends State<Profile> {
   String userName = '';
   String token = '';
   String _authToken = 'Unknown Auth Token';
-  FlutterMicrosoftAuthentication fma;
+  late FlutterMicrosoftAuthentication fma;
 
   var res;
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_microsoft_authentication_example/models/authentication_info.dart';
 import 'package:flutter_microsoft_authentication_example/profile/profile.dart';
+import 'package:flutter_microsoft_authentication_example/widget/messaging_widget.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -23,7 +24,7 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
   String _msProfile = 'Unknown Profile';
   List<AuthenticationInfo> microsoftInfo = [];
 
-  FlutterMicrosoftAuthentication fma;
+  late FlutterMicrosoftAuthentication fma;
 
   @override
   void initState() {
@@ -201,6 +202,34 @@ class _AuthenticateInfoState extends State<AuthenticateInfo> {
                       ),
                       Container(
                         child: Text("GOOGLE"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20),
+              child: ElevatedButton(
+                onPressed: null,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Container(
+                        child: ElevatedButton(
+                          child: Text('Open notifs'),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MessagingWidget()),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
